@@ -20,4 +20,4 @@ Navigate to http://localhost:8080/swagger/index.html in your browser and check o
 
 You can find the tutorial for this application at the [SoberKoder](https://www.soberkoder.com/) blog.
 
-https://www.soberkoder.com/golang/swagger-go-api-swaggo/
+https://www.soberkoder.com/swagger-go-api-swaggo/
