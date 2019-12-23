@@ -47,7 +47,7 @@ func createOrder(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(order)
 }
 
-// GetOrder godoc
+// GetOrders godoc
 // @Summary Get details of all orders
 // @Description Get details of all orders
 // @Tags orders
@@ -113,7 +113,7 @@ func updateOrder(w http.ResponseWriter, r *http.Request) {
 // @Accept  json
 // @Produce  json
 // @Param orderId path int true "ID of the order to be deleted"
-// @Success 204
+// @Success 204 "No Content"
 // @Router /orders/{orderId} [delete]
 func deleteOrder(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -157,5 +157,4 @@ func main() {
 	// Swagger
 	router.PathPrefix("/swagger").Handler(httpSwagger.WrapHandler)
 	log.Fatal(http.ListenAndServe(":8080", router))
-
 }
