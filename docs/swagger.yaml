@@ -1,0 +1,126 @@
+basePath: /
+definitions:
+  main.Item:
+    properties:
+      description:
+        type: string
+      itemId:
+        type: string
+      quantity:
+        type: integer
+    type: object
+  main.Order:
+    properties:
+      customerName:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/main.Item'
+        type: array
+      orderId:
+        type: string
+      orderedAt:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: soberkoder@swagger.io
+    name: API Support
+  description: This is a sample service for managing orders
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Orders API
+  version: "1.0"
+paths:
+  /orders:
+    get:
+      consumes:
+      - application/json
+      description: Get details of all orders
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Order'
+      summary: Get details of all orders
+      tags:
+      - orders
+    post:
+      consumes:
+      - application/json
+      description: Create a new order with the input paylod
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Order'
+      summary: Create a new order
+      tags:
+      - orders
+  /orders/{orderId}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete the order corresponding to the input orderId
+      parameters:
+      - description: ID of the order to be deleted
+        in: path
+        name: orderId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+      summary: Delete order identified by the given orderId
+      tags:
+      - orders
+    get:
+      consumes:
+      - application/json
+      description: Get details of order corresponding to the input orderId
+      parameters:
+      - description: ID of the order
+        in: path
+        name: orderId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Order'
+      summary: Get details for a given orderId
+      tags:
+      - orders
+    post:
+      consumes:
+      - application/json
+      description: Update the order corresponding to the input orderId
+      parameters:
+      - description: ID of the order to be updated
+        in: path
+        name: orderId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Order'
+      summary: Update order identified by the given orderId
+      tags:
+      - orders
+swagger: "2.0"
