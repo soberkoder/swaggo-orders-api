@@ -16,17 +16,17 @@ import (
 
 // Order represents the model for an order
 type Order struct {
-	OrderID      string    `json:"orderId"`
-	CustomerName string    `json:"customerName"`
-	OrderedAt    time.Time `json:"orderedAt"`
+	OrderID      string    `json:"orderId" example:"1"`
+	CustomerName string    `json:"customerName" example:"Leo Messi"`
+	OrderedAt    time.Time `json:"orderedAt" example:"2019-11-09T21:21:46+00:00"`
 	Items        []Item    `json:"items"`
 }
 
 // Item represents the model for an item in the order
 type Item struct {
-	ItemID      string `json:"itemId"`
-	Description string `json:"description"`
-	Quantity    int    `json:"quantity"`
+	ItemID      string `json:"itemId" example:"A1B2C3"`
+	Description string `json:"description" example:"A random description"`
+	Quantity    int    `json:"quantity" example:"1"`
 }
 
 // CreateOrder godoc
@@ -35,6 +35,7 @@ type Item struct {
 // @Tags orders
 // @Accept  json
 // @Produce  json
+// @Param order body Order true "Create order"
 // @Success 200 {object} Order
 // @Router /orders [post]
 func createOrder(w http.ResponseWriter, r *http.Request) {
@@ -53,7 +54,7 @@ func createOrder(w http.ResponseWriter, r *http.Request) {
 // @Tags orders
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} Order
+// @Success 200 {array} Order
 // @Router /orders [get]
 func getOrders(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")

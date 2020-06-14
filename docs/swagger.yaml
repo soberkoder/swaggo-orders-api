@@ -3,23 +3,29 @@ definitions:
   main.Item:
     properties:
       description:
+        example: A random description
         type: string
       itemId:
+        example: A1B2C3
         type: string
       quantity:
+        example: 1
         type: integer
     type: object
   main.Order:
     properties:
       customerName:
+        example: Leo Messi
         type: string
       items:
         items:
           $ref: '#/definitions/main.Item'
         type: array
       orderId:
+        example: "1"
         type: string
       orderedAt:
+        example: "2019-11-09T21:21:46+00:00"
         type: string
     type: object
 host: localhost:8080
@@ -46,7 +52,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.Order'
+            items:
+              $ref: '#/definitions/main.Order'
+            type: array
       summary: Get details of all orders
       tags:
       - orders
@@ -54,6 +62,13 @@ paths:
       consumes:
       - application/json
       description: Create a new order with the input paylod
+      parameters:
+      - description: Create order
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/main.Order'
       produces:
       - application/json
       responses:
@@ -88,7 +103,7 @@ paths:
       - application/json
       description: Get details of order corresponding to the input orderId
       parameters:
-      - description: ID of the order
+      - description: ID of the order abc
         in: path
         name: orderId
         required: true

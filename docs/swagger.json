@@ -34,7 +34,10 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.Order"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.Order"
+                            }
                         }
                     }
                 }
@@ -51,6 +54,17 @@
                     "orders"
                 ],
                 "summary": "Create a new order",
+                "parameters": [
+                    {
+                        "description": "Create order",
+                        "name": "order",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.Order"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -77,7 +91,7 @@
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "ID of the order",
+                        "description": "ID of the order abc",
                         "name": "orderId",
                         "in": "path",
                         "required": true
@@ -156,13 +170,16 @@
             "type": "object",
             "properties": {
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "A random description"
                 },
                 "itemId": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "A1B2C3"
                 },
                 "quantity": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 }
             }
         },
@@ -170,7 +187,8 @@
             "type": "object",
             "properties": {
                 "customerName": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "Leo Messi"
                 },
                 "items": {
                     "type": "array",
@@ -179,10 +197,12 @@
                     }
                 },
                 "orderId": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "1"
                 },
                 "orderedAt": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "2019-11-09T21:21:46+00:00"
                 }
             }
         }
